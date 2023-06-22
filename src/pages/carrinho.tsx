@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 
 interface Product {
-  id: string; // Adicione um campo "id" ao objeto Product
+  id: string;
   preco: number;
   nome: string;
 }
@@ -46,11 +46,9 @@ const Carrinho: React.FC = () => {
 
     startTimeRef.current = Date.now();
 
-    // Cleanup function when component unmounts
     return () => {
       endTimeRef.current = Date.now();
       console.log(startTimeRef.current, endTimeRef.current);
-      // Calculate and save the duration in seconds
       const durationInSeconds = Math.floor((endTimeRef.current - startTimeRef.current) / 1000);
       console.log(durationInSeconds);
       if (durationInSeconds > 0) {
@@ -102,7 +100,6 @@ const Carrinho: React.FC = () => {
     setCarrinho(novoCarrinho);
     calcularTotalCompra(novoCarrinho);
 
-    // Remover o produto do Realtime Database
     if (uid) {
       const carrinhoRef = ref(database, `carrinho/${uid}`);
       set(carrinhoRef, novoCarrinho);

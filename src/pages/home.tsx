@@ -38,11 +38,9 @@ const Home: React.FC = () => {
     startTimeRef.current = Date.now();
 
 
-    // Cleanup function when component unmounts
     return () => {
       endTimeRef.current = Date.now();
       console.log(startTimeRef.current, endTimeRef.current);
-      // Calculate and save the duration in seconds
       const durationInSeconds = Math.floor((endTimeRef.current - startTimeRef.current) / 1000);
       console.log(durationInSeconds);
       if (durationInSeconds > 0 && interacted) {
