@@ -32,7 +32,7 @@ const Cadastro: React.FC = () => {
      
       
       if (durationInSeconds > 0) {
-        const durationRef = ref(database, 'monitoracao/tempo/acesso/cadastro');
+        const durationRef = ref(database, 'monitoracao/tempo/cadastro');
         push(durationRef, durationInSeconds);
       }
     };
