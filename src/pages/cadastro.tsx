@@ -14,6 +14,7 @@ const Cadastro: React.FC = () => {
   const [targetInteracted, setTargetInteracted] = useState<boolean>(false);
   const startTimeRef = useRef<number>(0);
   const endTimeRef = useRef<number>(0);
+  
   useEffect(() => {
     const contagemRef = ref(database, 'monitoracao/contagem/acesso/cadastro');
     get(contagemRef).then((snapshot) => {
@@ -23,14 +24,12 @@ const Cadastro: React.FC = () => {
       set(ref(database, 'monitoracao/contagem/acesso/cadastro'), novaContagem);
     });
   }, []);
+
   useEffect(() => {
     startTimeRef.current = Date.now();
-
     return () => {
       endTimeRef.current = Date.now();
       const durationInSeconds = Math.floor((endTimeRef.current - startTimeRef.current) / 1000);
-     
-      
       if (durationInSeconds > 0) {
         const durationRef = ref(database, 'monitoracao/tempo/cadastro');
         push(durationRef, durationInSeconds);
